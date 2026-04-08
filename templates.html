@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Templates — Prompt Doctor</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body class="page-transition">
+
+<div class="loading-overlay">
+  <div class="loading-logo">PROMPT DOCTOR</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+</div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">⚕ PROMPT DOCTOR</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="templates.html" class="active">Templates</a></li>
+    <li><a href="learning.html">Learning</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-ghost">Sign In</button>
+    <button class="btn-gold">Get Started</button>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-tag">Template Library</div>
+  <h1 class="section-title">Ready-Made Prompt Templates</h1>
+  <p>Browse, copy, and use professionally crafted prompts across every category.</p>
+</div>
+
+<section class="section" style="padding-top:40px">
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-tab active" data-cat="all">All Templates</button>
+    <button class="filter-tab" data-cat="writing">Content Writing</button>
+    <button class="filter-tab" data-cat="coding">Coding</button>
+    <button class="filter-tab" data-cat="marketing">Marketing</button>
+    <button class="filter-tab" data-cat="image">Image Generation</button>
+    <button class="filter-tab" data-cat="business">Business Ideas</button>
+  </div>
+
+  <div class="templates-grid" id="templatesGrid"></div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">⚕ PROMPT DOCTOR</a>
+      <p>The premium AI-powered platform for crafting, analyzing, and perfecting your prompts.</p>
+    </div>
+    <div class="footer-col"><h4>Product</h4><ul><li><a href="index.html">Analyzer</a></li><li><a href="templates.html">Templates</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></div>
+    <div class="footer-col"><h4>Learn</h4><ul><li><a href="learning.html">Prompt Guide</a></li><li><a href="#">Blog</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Privacy</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2025 Prompt Doctor. Crafted with precision and passion.</div>
+</footer>
+
+<button class="chatbot-btn" id="chatbotBtn" title="Chat with Aria">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <circle cx="9" cy="10" r="1" fill="#0A0A0A"/><circle cx="12" cy="10" r="1" fill="#0A0A0A"/><circle cx="15" cy="10" r="1" fill="#0A0A0A"/>
+  </svg>
+</button>
+<div class="chatbot-window" id="chatbotWindow">
+  <div class="chatbot-header">
+    <div class="chatbot-header-info">
+      <div class="chatbot-avatar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="3"/>
+          <line x1="12" y1="8" x2="12" y2="11"/><line x1="8" y1="16" x2="8" y2="16" stroke-width="3"/><line x1="12" y1="16" x2="12" y2="16" stroke-width="3"/><line x1="16" y1="16" x2="16" y2="16" stroke-width="3"/>
+        </svg>
+      </div>
+      <div><div class="chatbot-name">Aria</div><div class="chatbot-status">● Online</div></div>
+    </div>
+    <button class="chatbot-close" id="chatbotClose">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatMessages">
+    <div class="chat-msg bot"><div class="chat-bubble">Need help finding the right template? Just ask me!</div></div>
+  </div>
+  <div class="chatbot-input-area">
+    <input class="chatbot-input" id="chatbotInput" placeholder="Ask Aria anything..." />
+    <button class="chatbot-send" id="chatbotSend">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="toast"></div>
+
+<script src="scripts/main.js"></script>
+<script src="scripts/auth.js"></script>
+<script src="scripts/chatbot.js"></script>
+<script>
+const templates = [
+  { cat: 'writing', title: 'SEO Blog Post', desc: 'Write a comprehensive, SEO-optimized blog post on [topic] targeting the keyword "[keyword]". Include an engaging intro, 5 subheadings, practical tips, and a strong CTA. Tone: professional yet conversational. Length: 1200 words.' },
+  { cat: 'writing', title: 'Product Description', desc: 'Write a compelling product description for [product name]. Highlight 3 key benefits, address the pain point it solves, and end with a persuasive call-to-action. Keep it under 150 words.' },
+  { cat: 'writing', title: 'Email Newsletter', desc: 'Write a weekly newsletter email for [brand name] about [topic]. Include a catchy subject line, personal opening, 3 key insights, and a clear CTA. Tone: friendly and informative.' },
+  { cat: 'writing', title: 'Short Story Opener', desc: 'Write the opening 3 paragraphs of a short story set in [setting]. The protagonist is [character description]. The tone should be [tone]. Hook the reader immediately with vivid sensory details.' },
+  { cat: 'coding', title: 'REST API Endpoint', desc: 'Write a [language] REST API endpoint for [functionality]. Include input validation, error handling, and return appropriate HTTP status codes. Follow RESTful conventions and add inline comments.' },
+  { cat: 'coding', title: 'Code Review', desc: 'Review the following [language] code for bugs, performance issues, security vulnerabilities, and style improvements. Provide specific line-by-line feedback and suggest refactored versions where needed.' },
+  { cat: 'coding', title: 'Unit Test Suite', desc: 'Write a comprehensive unit test suite for the following [language] function using [testing framework]. Cover happy paths, edge cases, and error scenarios. Aim for 90%+ coverage.' },
+  { cat: 'coding', title: 'Database Schema', desc: 'Design a normalized database schema for [application type]. Include tables, relationships, indexes, and constraints. Provide the SQL DDL statements and explain the design decisions.' },
+  { cat: 'marketing', title: 'Ad Copy (Facebook)', desc: 'Write 3 variations of Facebook ad copy for [product/service] targeting [audience]. Each variation should have a hook, value proposition, social proof element, and CTA. Keep each under 125 characters.' },
+  { cat: 'marketing', title: 'Brand Positioning', desc: 'Create a brand positioning statement for [company] in the [industry] space. Define the target audience, key differentiator, and emotional benefit. Follow the format: "For [audience] who [need], [brand] is the [category] that [benefit] because [reason]."' },
+  { cat: 'marketing', title: 'Social Media Calendar', desc: 'Create a 2-week social media content calendar for [brand] on [platforms]. Include post ideas, captions, hashtags, and optimal posting times. Mix educational, entertaining, and promotional content in a 70/20/10 ratio.' },
+  { cat: 'image', title: 'Photorealistic Portrait', desc: 'A photorealistic portrait of [subject description], shot with a 85mm lens, f/1.8 aperture, golden hour lighting, shallow depth of field, professional studio quality, 8K resolution, hyperdetailed.' },
+  { cat: 'image', title: 'Fantasy Landscape', desc: 'An epic fantasy landscape featuring [scene description], dramatic lighting, volumetric clouds, ultra-detailed, concept art style, inspired by [artist/style], cinematic composition, 4K, trending on ArtStation.' },
+  { cat: 'image', title: 'Product Mockup', desc: 'A clean, minimalist product mockup of [product] on a [background] surface. Studio lighting, soft shadows, high-end commercial photography style, white background, 4K resolution.' },
+  { cat: 'business', title: 'Startup Idea Validation', desc: 'Analyze the business viability of [startup idea]. Cover: target market size, key competitors, unique value proposition, potential revenue streams, main risks, and a 3-step validation plan. Be brutally honest.' },
+  { cat: 'business', title: 'Business Plan Outline', desc: 'Create a detailed business plan outline for [business type] in [location/market]. Include executive summary, market analysis, competitive landscape, marketing strategy, operations plan, and 3-year financial projections.' },
+  { cat: 'business', title: 'Pitch Deck Script', desc: 'Write a compelling 10-slide pitch deck script for [startup name] seeking [funding amount]. Cover: problem, solution, market size, business model, traction, team, and ask. Make it investor-ready and concise.' },
+];
+
+function renderTemplates(cat) {
+  const grid = document.getElementById('templatesGrid');
+  const filtered = cat === 'all' ? templates : templates.filter(t => t.cat === cat);
+  grid.innerHTML = filtered.map(t => `
+    <div class="template-card" data-cat="${t.cat}">
+      <div class="template-category">${t.cat.charAt(0).toUpperCase() + t.cat.slice(1)}</div>
+      <h3>${t.title}</h3>
+      <p>${t.desc.substring(0, 100)}...</p>
+      <div class="template-actions">
+        <button class="btn-sm btn-outline" onclick="copyText(\`${t.desc.replace(/`/g,'\\`')}\`)">⎘ Copy</button>
+        <button class="btn-sm btn-primary" onclick="useTemplate(\`${t.desc.replace(/`/g,'\\`')}\`)">↗ Use Template</button>
+      </div>
+    </div>
+  `).join('');
+
+  // Re-observe new cards
+  document.querySelectorAll('.template-card').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, 50);
+  });
+}
+
+function useTemplate(text) {
+  localStorage.setItem('pd_reuse', text);
+  window.location.href = 'index.html';
+}
+
+document.getElementById('filterTabs').addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-tab')) return;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  renderTemplates(e.target.dataset.cat);
+});
+
+renderTemplates('all');
+</script>
+</body>
+</html>
